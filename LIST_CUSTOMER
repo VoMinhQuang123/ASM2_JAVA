@@ -1,0 +1,95 @@
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.ArrayList;
+
+public class List_Customer {
+    private final List<Customer> listCustomer;
+
+    public List_Customer() {
+        this.listCustomer = new ArrayList<>();
+    }
+
+    public List_Customer(List<Customer> listCustomer) {
+        this.listCustomer = new ArrayList<>(listCustomer);
+    }
+
+    public void addNewCustomer(Customer customer) {
+        this.listCustomer.add(customer);
+    }
+
+    public void printListCustomer() {
+        for (Customer customer : listCustomer) {
+            System.out.println(customer);
+        }
+    }
+
+    public boolean deleteCustomer(Customer customer) {
+        return this.listCustomer.remove(customer);
+    }
+
+    public boolean searchCustomerByID(String id) {
+        for (Customer customer : listCustomer) {
+            if (customer.getId().equals(id)) {
+                System.out.println(customer);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean searchCustomerByName(String name) {
+        for (Customer customer : listCustomer) {
+            if (customer.getName().indexOf(name) >= 0) {
+                System.out.println(customer);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean searchCustomerByHeight(Float Height) {
+        for (Customer customer : listCustomer) {
+            if (customer.getHeight().equals(Height)) {
+                System.out.println(customer);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void sortCustomersByHeightHighToLow() {
+        List<Customer> sortedList = new ArrayList<>(listCustomer);
+        Collections.sort(sortedList, new Comparator<Customer>() {
+            @Override
+            public int compare(Customer customer1, Customer customer2) {
+                return customer2.getHeight().compareTo(customer1.getHeight());
+            }
+        });
+        for (Customer customer : sortedList) {
+            System.out.println(customer);
+        }
+    }
+
+    public void sortCustomersByHeightLowToHigh() {
+        List<Customer> sortedList = new ArrayList<>(listCustomer);
+        Collections.sort(sortedList, new Comparator<Customer>() {
+            @Override
+            public int compare(Customer customer1, Customer customer2) {
+                return customer1.getHeight().compareTo(customer2.getHeight());
+            }
+        });
+        for (Customer customer : sortedList) {
+            System.out.println(customer);
+        }
+    }
+
+    public boolean checkID(String id) {
+        for (Customer customer : listCustomer) {
+            if (customer.getId().equals(id)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
