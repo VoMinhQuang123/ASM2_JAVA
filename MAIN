@@ -1,0 +1,116 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        try {
+            while (true) {
+                System.out.println("___________Menu___________");
+                System.out.println("""
+                        1. Show all customers
+                        2. Add New Customer
+                        3. Delete customer
+                        4. Customer search
+                        5. Sort customers by score
+                        0. Exit""");
+                System.out.println("Enter your choice! ");
+                String select = sc.nextLine();
+
+                // Call the integer check function in the checkError class to see the input.
+                if (checkError.isInteger(select)) {
+                    int selected = Integer.parseInt(select);
+
+                    switch (selected) {
+                        case 0:
+                            System.out.println("Exiting...");
+                            return;
+                        case 1:
+                            Function.printCustomer();
+                            break;
+                        case 2:
+                            Function.addCustomer();
+                            System.out.println();
+                            break;
+                        case 3:
+                            Function.removeCustomer();
+                            System.out.println();
+                            break;
+                        case 4:
+                            searchCustomer();
+                            System.out.println();
+                            break;
+                        case 5:
+                            sortCustomerByScore();
+                            System.out.println();
+                            break;
+                        default:
+                            System.out.println("Invalid choice. Please try again.");
+                            break;
+                    }
+                } else {
+                    System.out.println("Invalid input. Please enter a valid number.");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    private static void searchCustomer() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("""
+                        1. Search Customer By ID
+                        2. Search Customer By Name
+                        3. Search Customer By Score""");
+        System.out.println("Enter your choice! ");
+        String select = sc.nextLine();
+        if (checkError.isInteger(select)) {
+            int selected = Integer.parseInt(select);
+            switch (selected) {
+                case 1:
+                    Function.searchCustomerId();
+                    System.out.println();
+                    break;
+                case 2:
+                    Function.searchCustomerName();
+                    System.out.println();
+                    break;
+                case 3:
+                    Function.searchCustomerHeight();
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        } else {
+            System.out.println("Invalid input. Please enter a valid number.");
+        }
+    }
+
+    private static void sortCustomerByScore() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("""
+                        1. Sort List Customer By Score Low To High
+                        2. Sort List Customer By Score High To Low""");
+        System.out.println("Enter your choice! ");
+        String select = sc.nextLine();
+        if (checkError.isInteger(select)) {
+            int selected = Integer.parseInt(select);
+            switch (selected) {
+                case 1:
+                    Function.HeightLowToHigh();
+                    System.out.println();
+                    break;
+                case 2:
+                    Function.HeightHighToLow();
+                    System.out.println();
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+                    break;
+            }
+        } else {
+            System.out.println("Invalid input. Please enter a valid number.");
+        }
+    }
+}
