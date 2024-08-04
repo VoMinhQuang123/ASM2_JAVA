@@ -1,0 +1,162 @@
+import java.util.Scanner;
+
+public class Function {
+    private static final List_Customer listCustomer = new List_Customer();
+    public static void addCustomer() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the number of customers you want to add: ");
+        String numberOfCustomers = sc.nextLine();
+        if (checkError.isInteger(numberOfCustomers)) {
+            int numberOfCustomersChecked = Integer.parseInt(numberOfCustomers);
+            for (int i = 0; i < numberOfCustomersChecked; i++) {
+                String id;
+                while (true) {
+                    System.out.print("Enter Customer ID: ");
+                    id = sc.nextLine();
+                    if (id.isEmpty()) {
+                        System.out.println("Please do not leave ID blank");
+                    } else if (listCustomer.checkID(id)) {
+                        System.out.println("ID already exists");
+                    } else {
+                        break;
+                    }
+                }
+
+                String name;
+                while (true) {
+                    System.out.print("Enter Customer's Name: ");
+                    name = sc.nextLine();
+                    if (name.isEmpty()) {
+                        System.out.println("Please do not leave Name blank");
+                    } else if (!checkError.isValidName(name)) {
+                        System.out.println("Please enter the correct name format as letters!");
+                    } else {
+                        break;
+                    }
+                }
+
+                int age;
+                while (true) {
+                    System.out.print("Enter Customer's Age: ");
+                    String ageInput = sc.nextLine();
+                    try {
+                        if (ageInput.isEmpty()) {
+                            System.out.println("Please do not leave Age blank");
+                        }
+                        age = Integer.parseInt(ageInput);
+                        if (checkError.checkAge(age)) {
+                            break;
+                        } else {
+                            System.out.println("Enter Age as an integer greater than 0!");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a valid age.");
+                    }
+                }
+
+                int gender;
+                while (true) {
+                    System.out.print("Enter Customer's Gender Male(1)/Female(0): ");
+                    String genderInput = sc.nextLine();
+                    try {
+                        if (genderInput.isEmpty()) {
+                            System.out.println("Please do not leave gender blank");
+                        }
+                        gender = Integer.parseInt(genderInput);
+                        if (checkError.checkGender(gender)) {
+                            break;
+                        } else {
+                            System.out.println("Enter Male as 1 and Female as 0");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a valid gender.");
+                    }
+                }
+
+                String address;
+                while (true) {
+                    System.out.print("Enter Customer's Address: ");
+                    address = sc.nextLine();
+                    if (address.isEmpty()) {
+                        System.out.println("Please do not leave Address blank");
+                    } else {
+                        break;
+                    }
+                }
+
+                float Height;
+                while (true) {
+                    System.out.print("Enter Customer's Score (kg): ");
+                    String pointInput = sc.nextLine();
+                    try {
+                        Height = Float.parseFloat(pointInput);
+                        if (Height > 0) {
+                            break;
+                        } else {
+                            System.out.println("Invalid input. Please enter Height must be greater than zero!");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Invalid input. Please enter a valid Height.");
+                    }
+                }
+
+                Customer customer = new Customer(id, name, age, gender, address, Height);
+                listCustomer.addNewCustomer(customer);
+                System.out.println("Added Successfully!");
+            }
+        }
+        sc.close();
+    }
+
+    public static void printCustomer() {
+        System.out.println("Customer list:");
+        listCustomer.printListCustomer();
+    }
+
+    public static void removeCustomer() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Customer ID: ");
+        String id = sc.nextLine();
+        Customer customer = new Customer(id);
+        if (listCustomer.deleteCustomer(customer)) {
+            System.out.println("Removed Successfully!");
+        } else {
+            System.out.println("Customer ID not found.");
+        }
+    }
+
+    public static void searchCustomerName() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Customer's Name: ");
+        String name = sc.nextLine();
+        if (!listCustomer.searchCustomerByName(name)) {
+            System.out.println("Not found");
+        }
+    }
+
+    public static void searchCustomerId() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Customer ID: ");
+        String id = sc.nextLine();
+        if (!listCustomer.searchCustomerByID(id)) {
+            System.out.println("Not found");
+        }
+    }
+
+    public static void searchCustomerHeight() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter Customer's Height: ");
+        Float Height = sc.nextFloat();
+        if (!listCustomer.searchCustomerByHeight(Height)) {
+            System.out.println("Not found");
+        }
+    }
+
+    public static void HeightHighToLow() {
+        listCustomer.sortCustomersByHeightHighToLow();
+    }
+
+    public static void HeightLowToHigh() {
+        listCustomer.sortCustomersByHeightLowToHigh();
+    }
+}
