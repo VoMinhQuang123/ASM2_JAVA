@@ -1,0 +1,96 @@
+public class Customer {
+    private String id;
+    private String name;
+    private int age;
+    private int gender;
+    private String address;
+    private Float Height;
+
+    // Constructors
+    public Customer(String id, String name, int age, int gender, String address, float Height) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.address = address;
+        this.Height = Height;
+    }
+
+    public Customer(String id) {
+        this.id = id;
+    }
+
+    // Getters and Setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getGender() {
+        return gender;
+    }
+
+    public void setGender(int gender) {
+        this.gender = gender;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Float getHeight() {
+        return Height;
+    }
+
+    public void setPoint(Float Height) {
+        this.Height = Height;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "ID='" + id + '\'' +
+                ", Name='" + name + '\'' +
+                ", Age=" + age +
+                ", Gender=" + gender +
+                ", Address='" + address + '\'' +
+                ", Height=" + Height +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customer customer = (Customer) o;
+        return id.equals(customer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+}
